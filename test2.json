@@ -1,0 +1,76 @@
+{
+    "data": {
+        "payer": {
+            "email": "d.boulore@orange.fr",
+            "country": "FRA",
+            "dateOfBirth": "2024-01-06T00:00:00+01:00",
+            "firstName": "Boulor\u00e9 Dominique",
+            "lastName": "dqsfde"
+        },
+        "items": [
+            {
+                "payments": [
+                    {
+                        "id": 7680,
+                        "shareAmount": 165600
+                    }
+                ],
+                "name": "Adhesion Football",
+                "priceCategory": "Fixed",
+                "qrCode": "MTEwNzI6NjM4NDAxNTM1NzY0Njk2Njc3",
+                "id": 11072,
+                "amount": 165600,
+                "type": "Payment",
+                "state": "Processed"
+            }
+        ],
+        "payments": [
+            {
+                "items": [
+                    {
+                        "id": 11072,
+                        "shareAmount": 165600,
+                        "shareItemAmount": 165600
+                    }
+                ],
+                "cashOutState": "MoneyIn",
+                "paymentReceiptUrl": "https:\/\/www.helloasso-sandbox.com\/associations\/dhagpo-test\/checkout\/paiement-attestation\/11072",
+                "id": 7680,
+                "amount": 165600,
+                "date": "2024-01-06T16:02:12.5495028+01:00",
+                "paymentMeans": "Card",
+                "installmentNumber": 1,
+                "state": "Authorized",
+                "meta": {
+                    "createdAt": "2024-01-06T15:59:36.4696677+01:00",
+                    "updatedAt": "2024-01-06T16:02:12.6066667+01:00"
+                },
+                "refundOperations": []
+            }
+        ],
+        "amount": {
+            "total": 165600,
+            "vat": 0,
+            "discount": 0
+        },
+        "id": 11072,
+        "date": "2024-01-06T16:02:12.5495028+01:00",
+        "formSlug": "default",
+        "formType": "Checkout",
+        "organizationName": "Dhagpo-test",
+        "organizationSlug": "dhagpo-test",
+        "checkoutIntentId": 14172,
+        "meta": {
+            "createdAt": "2024-01-06T15:59:36.4696677+01:00",
+            "updatedAt": "2024-01-06T16:02:12.6901263+01:00"
+        },
+        "isAnonymous": false,
+        "isAmountHidden": false
+    },
+    "eventType": "Order",
+    "metadata": {
+        "id": "105",
+        "socid": "16",
+        "userId": 98765
+    }
+} : 1
