@@ -298,4 +298,4 @@ class HelloAssoApiWrapper
         }
 
         return $body;
-    } */
+    } */www.kusala.fr/dolibarr/custom/helloassopay/public/start.php?ref=126
