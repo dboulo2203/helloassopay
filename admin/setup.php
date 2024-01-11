@@ -58,7 +58,7 @@ global $langs, $user;
 
 // Libraries
 require_once DOL_DOCUMENT_ROOT . "/core/lib/admin.lib.php";
-require_once '../lib/helloassopay.lib.php';
+ require_once '../lib/helloassopay.lib.php';
 //require_once "../class/myclass.class.php";
 
 // Translations
@@ -100,12 +100,6 @@ if (!class_exists('FormSetup')) {
 
 $formSetup = new FormSetup($db);
 
-
-// HTTP HOST
-// $item = $formSetup->newItem('NO_PARAM_JUST_TEXT');
-//$item->fieldOverride = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'];
-// $item->cssClass = 'minwidth500';
-
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
 $item = $formSetup->newItem('HELLOASSOPAY_BASEURL');
 $item->defaultFieldValue = 'default value';
@@ -139,70 +133,12 @@ $item = $formSetup->newItem('HELLOASSO_HEADER_AFTER_PAYMENT');
 $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
-$item = $formSetup->newItem('HELLOASSO_URL_AFTER_PAYMENT_PAGE');
-$item->defaultFieldValue = 'default value';
-
-// Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
 $item = $formSetup->newItem('HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE');
 $item->defaultFieldValue = 'default value';
 
-// Setup conf HELLOASSOPAY_MYPARAM2 as a simple textarea input but we replace the text of field title
-// $item = $formSetup->newItem('HELLOASSOPAY_CLIENT_ID');
-// $item->nameText = $item->getNameText().' more html text ';
-
-// Setup conf HELLOASSOPAY_MYPARAM3
-// $item = $formSetup->newItem('HELLOASSOPAY_MYPARAM3');
-// $item->setAsThirdpartyType();
-
-// Setup conf HELLOASSOPAY_MYPARAM4 : exemple of quick define write style
-//$formSetup->newItem('HELLOASSOPAY_MYPARAM4')->setAsYesNo();
-
-// Setup conf HELLOASSOPAY_MYPARAM5
-// $formSetup->newItem('HELLOASSOPAY_MYPARAM5')->setAsEmailTemplate('thirdparty');
-
-// Setup conf HELLOASSOPAY_MYPARAM6
-// $formSetup->newItem('HELLOASSOPAY_MYPARAM6')->setAsSecureKey()->enabled = 0; // disabled
-
-// Setup conf HELLOASSOPAY_MYPARAM7
-// $formSetup->newItem('HELLOASSOPAY_MYPARAM7')->setAsProduct();
-
-// $formSetup->newItem('Title')->setAsTitle();
-
-// Setup conf HELLOASSOPAY_MYPARAM8
-// $item = $formSetup->newItem('HELLOASSOPAY_MYPARAM8');
-// $TField = array(
-// 	'test01' => $langs->trans('test01'),
-// 	'test02' => $langs->trans('test02'),
-// 	'test03' => $langs->trans('test03'),
-// 	'test04' => $langs->trans('test04'),
-// 	'test05' => $langs->trans('test05'),
-// 	'test06' => $langs->trans('test06'),
-// );
-// $item->setAsMultiSelect($TField);
-// $item->helpText = $langs->transnoentities('HELLOASSOPAY_MYPARAM8');
-
-
-// Setup conf HELLOASSOPAY_MYPARAM9
-// $formSetup->newItem('HELLOASSOPAY_MYPARAM9')->setAsSelect($TField);
-
-
-// Setup conf HELLOASSOPAY_MYPARAM10
-// $item = $formSetup->newItem('HELLOASSOPAY_MYPARAM10');
-// $item->setAsColor();
-// $item->defaultFieldValue = '#FF0000';
-// $item->nameText = $item->getNameText().' more html text ';
-// $item->fieldInputOverride = '';
-// $item->helpText = $langs->transnoentities('AnHelpMessage');
-
-//$item->fieldValue = '';
-//$item->fieldAttr = array() ; // fields attribute only for compatible fields like input text
-//$item->fieldOverride = false; // set this var to override field output will override $fieldInputOverride and $fieldOutputOverride too
-//$item->fieldInputOverride = false; // set this var to override field input
-//$item->fieldOutputOverride = false; // set this var to override field output
 
 $setupnotempty += count($formSetup->items);
 $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
-
 
 /*
  * Actions

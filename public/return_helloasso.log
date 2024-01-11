@@ -1,4 +1,4 @@
- *** Trace Error 08-01-24 02:52:06 -  API Error : {"errors":[{"code":"ArgumentInvalid","message":"Le champ BackUrl est invalide"}]}
- *** Trace Error 08-01-24 10:36:00 - Invoice not found or error getting invoice : FA2401-11169 : FA2401-11169
- *** Trace Error 08-01-24 10:36:36 -  API Error : {"errors":[{"code":"ArgumentInvalid","message":"Le champ BackUrl est invalide"}]}
- *** Trace Error 09-01-24 11:06:44 -  API Error : {"errors":[{"code":"ArgumentInvalid","message":"Le champ BackUrl est invalide"}]}
+ *** Trace Error 10-01-24 06:46:24 - Cette facture est déjà payée.  : 124
+ *** Trace Error 10-01-24 06:57:53 - Cette facture est déjà payée.  : 124
+ *** Trace Error 10-01-24 07:05:37 - Cette facture est déjà payée.  : 124
+ *** Trace Error 10-01-24 07:06:05 - Cette facture est déjà payée.  : 124

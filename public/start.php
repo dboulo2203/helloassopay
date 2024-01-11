@@ -98,14 +98,15 @@
 
 		$helloassoApiWrapper->initToken();
 		$helloassoApiWrapper->get_access_token();
-		print($helloassoApiWrapper->access_token);
+		// print($helloassoApiWrapper->access_token);
 	
-		if ($tracemode===true) {
+		if (!empty($tracemode)) {
 			$f = fopen('return_helloasso.log', 'a+');
             fwrite($f,"  *** Trace mode 1 " . date("d-m-y h:i:s") ." - access token : " . json_encode($helloassoApiWrapper->access_token) . "\n");
             // fwrite($f," *** Trace mode :  3 : " . date("d-m-y h:i:s") .  json_encode($redirecturl) . "\n");
             fclose($f);
 		 }
+
 		$redirecturl = $helloassoApiWrapper->initCart($data,$tracemode );
 		if (!empty($tracemode)) {
 			$f = fopen('return_helloasso.log', 'a+');

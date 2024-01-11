@@ -97,7 +97,20 @@ print dol_get_fiche_head($head, 'about', $langs->trans($page_name), 0, 'helloass
 
 dol_include_once('/helloassopay/core/modules/modHelloAssoPay.class.php');
 $tmpmodule = new modHelloAssoPay($db);
-print $tmpmodule->getDescLong();
+// print $tmpmodule->getDescLong();
+
+	print "Ce module permet le paiement par carte bancaire, en utilisant Helloasso.</br>";
+
+$orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/README.md');
+$a = htmlentities($orig);
+
+echo '<code>';
+echo '<pre>';
+
+echo $a;
+
+echo '</pre>';
+echo '</code>';
 
 // Page end
 print dol_get_fiche_end();

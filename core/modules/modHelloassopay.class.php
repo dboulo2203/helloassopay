@@ -114,19 +114,17 @@ class modHelloAssoPay extends DolibarrModules
 				//   '/helloassopay/js/helloassopay.js.php',
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
-			// 'hooks' => array(
+			//  'hooks' => array(
 			//	  'data' => array(
-			//	      'newpayment',
+			// 	      'newpayment',
 			//	       'paymentlib'
-				//   ),
+				//    ),
 				//   'entity' => '0',
 			// ),)
-			
-			
-						'hooks' => array( 
-                'newpayment',
-                'paymentlib'
-            ),
+						
+			/*	'hooks' => array( 
+                'newpayment'
+            ), */ 
 				//   'entity' => '0',
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,

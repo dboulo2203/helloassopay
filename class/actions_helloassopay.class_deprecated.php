@@ -14,7 +14,7 @@ $langs->load("up2pay@up2pay");
 /**
  * Class Actionsup2pay
  */
-class ActionsHelloassopay
+class ActionsHelloassopay_deprecated
 {
     /**
      * @var DoliDB database handler.
@@ -102,9 +102,9 @@ class ActionsHelloassopay
                     $result =  '<br>';
                     $result .= '<div class="button buttonpayment" id="div_dopayment_helloassopay">';
                     $result .= '<span class="fa fa-credit-card"></span>';
-                    $result .= '<input class="" type="submit" id="dopayment_up2pay" name="dopayment_helloassopay value="' . $langs->trans("UP2PAY_PAY_BUTTON") . '">';
+                    $result .= '<input class="" type="submit" id="dopayment_helloassopay" name="dopayment_helloassopay value="' . $langs->trans("Payer") . '">';
                     $result .= '<br>';
-                    $result .= '<span class="buttonpaymentsmall">' . 'Up2pay button' . '</span>';
+                    $result .= '<span class="buttonpaymentsmall">' . 'helloassopay button' . '</span>';
                     $result .= '</div>';
                     $result .= '<script>
                                     $( document ).ready(function() {
@@ -177,34 +177,34 @@ class ActionsHelloassopay
         global $conf, $langs;
 
         $error = 0; // Error counter.
-        // if (in_array($parameters['currentcontext'], array('newpayment'))) { // Do something only for the context 'somecontext1' or 'somecontext2'.
-        //     $paymentmethod = $parameters['paymentmethod'];
-        //     $source = $parameters['source'];
-        //     $object = $parameters['object'];
+        if (in_array($parameters['currentcontext'], array('newpayment'))) { // Do something only for the context 'somecontext1' or 'somecontext2'.
+             $paymentmethod = $parameters['paymentmethod'];
+            $source = $parameters['source'];
+            $object = $parameters['object'];
 
-        //     if ((empty($paymentmethod) || $paymentmethod == 'lyra') && ! empty($conf->lyra->enabled)) {
-        //         if ($source == 'order' && $object->billed) {
-        //             print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("OrderBilledPending") . '</span>';
-        //         }
+             if ((empty($paymentmethod) || $paymentmethod == 'lyra') && ! empty($conf->lyra->enabled)) {
+                 if ($source == 'order' && $object->billed) {
+                     print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("OrderBilledPending") . '</span>';
+                 }
 
-        //         if ($source == 'invoice' && strripos($object->note_private, '##')) { // The last appearance is found.
-        //             print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("LYRA_PENDING_PAYMENT_DESC") . '</span>';
-        //             exit;
-        //         }
+                 if ($source == 'invoice' && strripos($object->note_private, '##')) { // The last appearance is found.
+                     print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("LYRA_PENDING_PAYMENT_DESC") . '</span>';
+                     exit;
+                 }
 
-        //         if ($source == 'donation' && $object->paid) {
-        //             print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("DonationPaidPending") . '</span>';
-        //         }
-        //     }
-        // }
+                 if ($source == 'donation' && $object->paid) {
+                     print '<br><br><span class="amountpaymentcomplete">' . $langs->trans("DonationPaidPending") . '</span>';
+                 }
+             }
+         }
            $source = $parameters['source'];
             $object = $parameters['object'];
 
-       // if (! $error) {
+        if (! $error) {
             return 0; // Or return 1 to replace standard code.
-       //  }
+         }
 
-        $this->errors[] = 'Error message';
+        $this->errors[] = 'Error messageA';
         return -1;
     }
 
@@ -259,7 +259,7 @@ class ActionsHelloassopay
 
                     // Send form to Up2Pay
                     // log_in_file(" ***  DoPayment : " . $facture->total_ttc ." -" . "EUR" ." -" . $thirdparty->email ." -" . $urlok  ." -" . $urlko  ." -" . $tag);
-                    print_up2pay_redirect($facture->total_ttc, "EUR", $thirdparty->email, $urlok, $urlko, $tag);
+                    print_helloassopay_redirect($facture->total_ttc, "EUR", $thirdparty->email, $urlok, $urlko, $tag);
                 
                     return 0;
             }

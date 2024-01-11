@@ -28,6 +28,15 @@ ModuleHelloAssoPayDesc = Description de HelloAssoPay
 HelloAssoPaySetup = Configuration du module HelloAssoPay
 Settings = Réglages
 HelloAssoPaySetupPage = Page de configuration du module HelloAssoPay
+HELLOASSOPAY_BASEURL= Url d'accès à HelloAsso
+HELLOASSOPAY_CLIENT_ID=Code client configuré dans la page API de l'admin HelloAsso
+HELLOASSOPAY_CLIENT_SECRET=Code secret configuré dans la page API de l'admin HelloAsso	
+HELLOASSOPAY_ORGANISM_SLUR=Nom générique de l'association dans l'admin HelloAsso
+HELLOASSO_PAYMENTMODE= Id du mode de paiement Dolibarr de type Carte HelloAsso
+HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS= Id de la banque Dolibarr à utiliser pour l'enregistrement du paiement
+HELLOASSO_URL_AFTER_PAYMENT= Url de la page affichée après paiement
+HELLOASSO_HEADER_AFTER_PAYMENT=Header de la page affichée après paiement sur Dolibarr 
+HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE=Code API Dolibarr de l'utilisateur qui sera identifié comme créateur du paiement
 
 #
 # Page À propos
@@ -46,4 +55,3 @@ MyPageName = Nom de ma page
 #
 MyWidget = Mon widget
 MyWidgetDescription = Description de mon widget
-HELLOASSOPAY_BASEURL=HELLOASSOPAY_BASEURL

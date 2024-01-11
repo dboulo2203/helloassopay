@@ -50,9 +50,9 @@
 			$_GET["error"];
 	} else if ($action === "returnurl") {
 		if ($_GET["code"] === "succeeded")
-			$message= "Votre paiement helloasso pour la facture (" . $_GET["ref"] . ") est accepté ";
+			$message= "Votre paiement helloasso pour la facture  est accepté (" . $_GET["ref"] . ")";
 		else if ($_GET["code"] === "refused")
-			$message="Votre paiement helloasso pour la facture (" . $_GET["ref"] . ") est refusé";
+			$message="Votre paiement helloasso pour la facture est refusé (" . $_GET["ref"] . ")";
 		else
 			$message="Retour sur notre site sans cause identifiée par Helloasso,  pour la facture n° : " . $_GET["ref"];
 	} else {

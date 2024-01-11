@@ -192,10 +192,10 @@ class HelloAssoApiWrapper
             }'
         ),JSON_UNESCAPED_SLASHES);
 
+        // *** Trace mode
         $f = fopen('return_helloasso.log', 'a+');
         fwrite($f," *** Trace mode :  2 - Init card API String : " . date("d-m-y h:i:s") .  $apiString . "\n");
-        // fwrite($f," *** Trace mode :  3 : " . date("d-m-y h:i:s") .  json_encode($redirecturl) . "\n");
-        fclose($f);
+         fclose($f);
 		}
 
         curl_setopt_array($curl, array(
@@ -215,7 +215,7 @@ class HelloAssoApiWrapper
             CURLOPT_POSTFIELDS => '{
                "totalAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
                 "initialAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
-                "itemName": "Adhesion Football",
+                "itemName": "Paiment de la facture Dhagpo ",
                 "backUrl" : "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '" ,
                 "errorUrl" :  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '",
                 "returnUrl":  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=returnurl&ref=' . $invoice->id . '",
@@ -236,22 +236,30 @@ class HelloAssoApiWrapper
         try {
             $response = curl_exec($curl);
 
+            // *** Trace mode
+            if (!empty($tracemode)) {
+                $f = fopen('return_helloasso.log', 'a+');
+                fwrite($f," *** Trace mode 2b " . date("d-m-y h:i:s") ." get checkout ling: - : " .$response . "\n");
+                fclose($f);
+            }
             // *** Check curl  error
             $err = curl_error($curl);
             if ($err)
                 throw new Exception("API Error : " . $err, 600);
             
            if (empty($response))
-                throw new Exception("API Error : initcard empty response from API" , 600);
+                throw new Exception("Erreur de connexion à HelloAsso (retour de helloAssos vide)" , 600);
 
-            // *** Get Data from the APii response
+            // *** Get Data from the APi response
             $decodedResponse = json_decode($response, true);
 
             // *** Check server error
             if (array_key_exists("error", $decodedResponse))
-                throw new Exception(" API Error : " . $decodedResponse->error . $decodedResponse->error_description, 600);
+                throw new Exception(" Erreur de connexion à HelloAsso (error) . " . $decodedResponse->error . $decodedResponse->error_description, 600);
            if (array_key_exists("errors", $decodedResponse))
-                throw new Exception(" API Error : " . $response, 600);
+                throw new Exception(" Erreur de connexion à HelloAsso (errors) : " . $response, 600);   
+            if (array_key_exists("message", $decodedResponse))
+                throw new Exception(" Erreur de connexion à HelloAsso (message) " . $decodedResponse["message"], 600);
 
             $redirectUrl = $decodedResponse["redirectUrl"];
             $id = $decodedResponse["14061"];
