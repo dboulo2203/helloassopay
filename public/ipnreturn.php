@@ -58,6 +58,7 @@
 	require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 
 	try {
+		// *** Get response and prepare data
 		$returnVars = file_get_contents('php://input');
 		$data = json_decode($returnVars);
 		$paymentdata = new stdclass();

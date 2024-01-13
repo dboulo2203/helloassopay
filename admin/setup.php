@@ -136,6 +136,17 @@ $item->defaultFieldValue = 'default value';
 $item = $formSetup->newItem('HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE');
 $item->defaultFieldValue = 'default value';
 
+// Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
+$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_ERROR');
+$item->defaultFieldValue = 'default value';
+
+// Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
+$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_SUCCESS');
+$item->defaultFieldValue = 'default value';
+
+// Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
+$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_REFUSED');
+$item->defaultFieldValue = 'default value';
 
 $setupnotempty += count($formSetup->items);
 $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);

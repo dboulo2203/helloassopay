@@ -66,6 +66,7 @@ class DoliWrapper
 
     /**
      * on helloasso successful return, we create the payment 
+     * 
      */
     function createInvoicePayment($data) {
    
@@ -88,10 +89,10 @@ class DoliWrapper
                         
             // ****
             $amount= (float) $data->paymentamount/100;
-            if (((float) $data->paymentamount)/100 != (float) $facture->total_ttc){
-                $realAmount=((float) $data->paymentamount)/100;
-                throw new Exception ("Montants paiement (".$realAmount.") et montant facture (".(float) $facture->total_ttc.") différents. InvoiceID : " . $invoice_id . " - ",600);
-            }
+            // if (((float) $data->paymentamount)/100 != (float) $facture->total_ttc){
+            //     $realAmount=((float) $data->paymentamount)/100;
+            //    throw new Exception ("Montants paiement (".$realAmount.") et montant facture (".(float) $facture->total_ttc.") différents. InvoiceID : " . $invoice_id . " - ",600);
+            // }
                 // Get the customer
             $thirdparty_id=$facture->socid;
 

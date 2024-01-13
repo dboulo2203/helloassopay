@@ -46,13 +46,13 @@
 	if ($action === "backurl") {
 		$message= "Retour sur notre site après à votre demande sur le site Helloasso : Facture (" . $_GET["ref"].")";
 	} else if ($action === "errorurl") {
-		$message= "Une erreur est survenue lors du paiement helloasso : Facture (" . $_GET["ref"] . ") - Cause : " .
+		$message= $message= HELLOASSO_RETURN_MSG_ERROR . "(ref:" $_GET["ref"] . ") - Cause : " .
 			$_GET["error"];
 	} else if ($action === "returnurl") {
 		if ($_GET["code"] === "succeeded")
-			$message= "Votre paiement helloasso pour la facture  est accepté (" . $_GET["ref"] . ")";
+			$message= HELLOASSO_RETURN_MSG_SUCCESS . "(ref:" $_GET["ref"] . ")";
 		else if ($_GET["code"] === "refused")
-			$message="Votre paiement helloasso pour la facture est refusé (" . $_GET["ref"] . ")";
+			$message= HELLOASSO_RETURN_MSG_REFUSED . "(ref:" $_GET["ref"] . ")";
 		else
 			$message="Retour sur notre site sans cause identifiée par Helloasso,  pour la facture n° : " . $_GET["ref"];
 	} else {

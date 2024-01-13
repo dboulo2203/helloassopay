@@ -268,7 +268,6 @@ class HelloAssoApiWrapper
         } catch (Exception $exp) {
             throw new Exception($exp->getMessage(),$exp->getCode());
         }
-
         return $decodedResponse;
     }
 }
@@ -298,4 +297,4 @@ class HelloAssoApiWrapper
         }
 
         return $body;
-    } */www.kusala.fr/dolibarr/custom/helloassopay/public/start.php?ref=126
+    } www.kusala.fr/dolibarr/custom/helloassopay/public/start.php?ref=126*/

@@ -78,6 +78,15 @@
 		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE");
 
+		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
+			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_ERROR");
+		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
+			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_SUCCESS");
+		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
+			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_REFUSED");
+
+
+			
 		// *** Get the invoice id
 		$tag = $_GET["ref"];
 		if (empty($tag))
