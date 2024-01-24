@@ -101,6 +101,8 @@ $tmpmodule = new modHelloAssoPay($db);
 
 	print "Ce module permet le paiement par carte bancaire, en utilisant Helloasso.</br>";
 
+print "<link href=\"../public/return_helloasso.log\">Fichier des retours de Hello Asso</link>";
+
 $orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/README.md');
 $a = htmlentities($orig);
 
