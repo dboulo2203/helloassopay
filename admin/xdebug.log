@@ -1,0 +1,7 @@
+[64424] Log opened at 2024-01-26 18:57:05.579801
+[64424] [Step Debug] INFO: Connecting to configured address/port: localhost:0.
+[64424] [Step Debug] WARN: Creating socket for 'localhost:0', connect: 10049.
+[64424] [Step Debug] WARN: Creating socket for 'localhost:0', connect: 10049.
+[64424] [Step Debug] ERR: Could not connect to debugging client. Tried: localhost:0 (through xdebug.client_host/xdebug.client_port) :-(
+[64424] Log closed at 2024-01-26 18:57:05.592063
+

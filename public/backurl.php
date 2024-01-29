@@ -26,6 +26,12 @@
 	if (!$res && file_exists("../../../main.inc.php")) $res = @include "../../../main.inc.php";
 	if (!$res) die("Include of main fails");
 
+	global $conf;
+    global $langs;
+  // Translations
+	$langs->loadLangs(array("admin", "helloassopay@helloassopay"));
+
+
 	// Log the data returned from helloasso
 	$returnVars=$_GET;
 	$ipn_log_file = 'return_helloasso.log';
@@ -38,7 +44,7 @@
 	// if (!empty($conf->global->HELLOASSO_HEADER_AFTER_PAYMENT))
 	// 	print $conf->global->HELLOASSO_HEADER_AFTER_PAYMENT;
 
-	$message="message vide";
+  	$message="message vide";
 	$action = $_GET["action"];
 	if (empty($action))
 		$message="Cette page doit être appelée avec le paramètre action";
@@ -46,26 +52,25 @@
 	if ($action === "backurl") {
 		$message= "Retour sur notre site après à votre demande sur le site Helloasso : Facture (" . $_GET["ref"].")";
 	} else if ($action === "errorurl") {
-		$message= $message= HELLOASSO_RETURN_MSG_ERROR . "(ref:" $_GET["ref"] . ") - Cause : " .
+		$message= $langs->trans("HELLOASSO_RETURN_MSG_ERROR") . " (ref:" . $_GET["ref"] . ") - Cause : " .
 			$_GET["error"];
 	} else if ($action === "returnurl") {
 		if ($_GET["code"] === "succeeded")
-			$message= HELLOASSO_RETURN_MSG_SUCCESS . "(ref:" $_GET["ref"] . ")";
+			$message=  $langs->trans("HELLOASSO_RETURN_MSG_SUCCESS") . " (ref:" . $_GET["ref"] . ")";
 		else if ($_GET["code"] === "refused")
-			$message= HELLOASSO_RETURN_MSG_REFUSED . "(ref:" $_GET["ref"] . ")";
+			$message= $langs->trans("HELLOASSO_RETURN_MSG_REFUSED") . " (ref:" . $_GET["ref"] . ")";
 		else
 			$message="Retour sur notre site sans cause identifiée par Helloasso,  pour la facture n° : " . $_GET["ref"];
 	} else {
 		$message="Action de retour non reconnue : " . $action . " - Facture (" . $_GET["ref"] ."). Veuillez contacter l'administrateur";
 	}
 
-	global $conf;
 
 		// *** Display message  
 	print "<link rel='stylesheet' href='./main.css' type='text/css'>";
 	print("<div class='helloassopage'>");
-	if (!empty($conf->global->HELLOASSO_HEADER_AFTER_PAYMENT))
-		print '<div class=\'helloassoheader\'>'. $conf->global->HELLOASSO_HEADER_AFTER_PAYMENT.'</div>';
+	if (!$langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT"))
+		print '<div class=\'helloassoheader\'>'. $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT").'</div>';
 	
 	print '<div class=\'helloassomessage\'>'  . $message;
 	if (!empty($conf->global->HELLOASSO_URL_AFTER_PAYMENT))

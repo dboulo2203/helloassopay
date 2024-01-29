@@ -35,8 +35,18 @@ HELLOASSOPAY_ORGANISM_SLUR=Nom générique de l'association dans l'admin HelloAs
 HELLOASSO_PAYMENTMODE= Id du mode de paiement Dolibarr de type Carte HelloAsso
 HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS= Id de la banque Dolibarr à utiliser pour l'enregistrement du paiement
 HELLOASSO_URL_AFTER_PAYMENT= Url de la page affichée après paiement
-HELLOASSO_HEADER_AFTER_PAYMENT=Header de la page affichée après paiement sur Dolibarr 
 HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE=Code API Dolibarr de l'utilisateur qui sera identifié comme créateur du paiement
+HELLOASSO_LIBELLE_DESIGNATION=Désignation présente dans le fichier des paiements HelloAsso
+ErrorGlobalMsg=Ce message apparait car le site a rencontré un problème. Veuillez contacter l'administrateur
+ErrorIdInvoiceMandatory=L'id de la facture est obligatoire 
+ErrorThirdpartyNotFound=Adhérent non trouvé dans la base de données
+ErrorInvoiceNotFound=Facture non trouvée dans la base de données
+ErrorInvoiceNotPayable=Cette facture ne peut être réglée par HelloAsso
+ErrorNothingToPayInInvoice=Cette facture est déjà réglée.
+HELLOASSO_HEADER_AFTER_PAYMENT=Dhagpo Kundreul Lings
+HELLOASSO_RETURN_MSG_ERROR=Une erreur est survenue lors de votre paiement
+HELLOASSO_RETURN_MSG_SUCCESS=Votre paiement HelloAsso a été accepté
+HELLOASSO_RETURN_MSG_REFUSED=Votre paiement HelloAsso a été refusé
 
 #
 # Page À propos
@@ -55,3 +65,4 @@ MyPageName = Nom de ma page
 #
 MyWidget = Mon widget
 MyWidgetDescription = Description de mon widget
+Payer=PAyer

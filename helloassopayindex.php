@@ -246,6 +246,26 @@ if (isModEnabled('helloassopay') && $user->rights->helloassopay->read)
 
 print '</div></div>';
 
+$orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/public/return_helloasso.log');
+$a = htmlentities($orig);
+echo '<code>';
+echo '<pre>';
+echo $a;
+echo '</pre>';
+echo '</code>';
+
+
+echo '*******************************************';
+
+$orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/public/ipn_helloasso.log');
+$a = htmlentities($orig);
+echo '<code>';
+echo '<pre>';
+echo $a;
+echo '</pre>';
+echo '</code>';
+
+
 // End of page
 llxFooter();
 $db->close();

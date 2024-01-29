@@ -3,3 +3,55 @@
  *** Trace Error 10-01-24 07:05:37 - Cette facture est déjà payée.  : 124
  *** Trace Error 10-01-24 07:06:05 - Cette facture est déjà payée.  : 124
  *** Trace Error 13-01-24 03:14:51 - Cette facture est déjà payée.  : 140
+ *** backurl returned from server 23-01-24 07:19:52 : {"action":"returnurl","ref":"146","checkoutIntentId":"15060","code":"succeeded"}
+ *** backurl returned from server 23-01-24 07:22:03 : {"action":"returnurl","ref":"146","checkoutIntentId":"15060","code":"succeeded"}
+ *** backurl returned from server 23-01-24 07:22:48 : {"action":"returnurl","ref":"146","checkoutIntentId":"15060","code":"succeeded"}
+ *** backurl returned from server 23-01-24 07:23:30 : {"action":"returnurl","ref":"146","checkoutIntentId":"15060","code":"succeeded"}
+ *** Trace Error 25-01-24 12:17:34 - Cette facture est déjà payée.  : 14753
+ *** Trace Error 25-01-24 12:19:35 - Cette facture est déjà payée.  : 14753
+ *** Trace Error 26-01-24 08:01:37 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso, Veuillez contacter Dhagpo Kagyu Ling  14762
+ *** Trace Error 26-01-24 08:07:37 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso, Veuillez contacter Dhagpo Kagyu Ling  14762
+ *** Trace Error 26-01-24 08:07:50 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso  14762
+ *** Trace Error 26-01-24 08:10:03 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso(14762)
+ *** Trace Error 26-01-24 08:10:33 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso (14762)
+ *** Trace Error 26-01-24 08:11:11 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso (14759)
+ *** Trace Error 26-01-24 08:11:37 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso (14763)
+ *** Trace Error 26-01-24 08:11:49 -  Erreur de connexion à HelloAsso (errors) : {"errors":[{"code":"ArgumentInvalid","message":"Le champ BackUrl est invalide"}]}
+ *** Trace Error 26-01-24 08:23:59 - Facture non trouv&eacute;edans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:24:23 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:27:33 - L'id de la facture est obligatoire (GET[ref]) 
+ *** Trace Error 26-01-24 08:27:49 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:29:11 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:29:22 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:32:53 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:33:25 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:41:17 - L'id de la facture est obligatoire 
+ *** backurl returned from server 26-01-24 08:41:49 : []
+ *** backurl returned from server 26-01-24 08:43:29 : []
+ *** backurl returned from server 26-01-24 08:44:09 : []
+ *** backurl returned from server 26-01-24 08:45:23 : {"action":"returnurl","ref":"146","code":"succeeded"}
+ *** backurl returned from server 26-01-24 08:46:16 : {"action":"returnurl","ref":"146","code":"succeeded"}
+ *** backurl returned from server 26-01-24 08:46:46 : {"action":"returnurl","ref":"146","code":"refused"}
+ *** backurl returned from server 26-01-24 08:48:23 : {"action":"returnurl","ref":"146","code":"refused"}
+ *** backurl returned from server 26-01-24 08:49:43 : []
+ *** backurl returned from server 26-01-24 08:50:53 : []
+ *** backurl returned from server 26-01-24 08:51:31 : []
+ *** backurl returned from server 26-01-24 08:51:47 : []
+ *** backurl returned from server 26-01-24 08:52:45 : {"action":"returnurl","ref":"146","code":"refused"}
+ *** Trace Error 26-01-24 08:53:17 - L'id de la facture est obligatoire 
+ *** Trace Error 26-01-24 08:53:17 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:53:21 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:53:59 - ErrorIdInvoiceMandatory
+ *** Trace Error 26-01-24 08:54:21 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:54:48 - ErrorInvoiceNotFound (14790)
+ *** Trace Error 26-01-24 08:55:02 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** Trace Error 26-01-24 08:55:24 - ErrorInvoiceNotFound (14790)
+ *** Trace Error 26-01-24 08:55:29 - ErrorIdInvoiceMandatory
+ *** Trace Error 26-01-24 08:56:03 - ErrorInvoiceNotFound (14790)
+ *** Trace Error 26-01-24 08:56:40 - ErrorInvoiceNotFound (14790)
+ *** Trace Error 26-01-24 08:56:48 - ErrorInvoiceNotFound (14790)
+ *** Trace Error 26-01-24 08:57:19 - ErrorIdInvoiceMandatory
+ *** Trace Error 26-01-24 08:57:37 - ErrorIdInvoiceMandatory
+ *** Trace Error 26-01-24 08:57:55 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
+ *** backurl returned from server 26-01-24 08:58:17 : {"action":"returnurl","ref":"146","code":"refused"}
+ *** backurl returned from server 26-01-24 08:58:52 : {"action":"errorurl","ref":"146","code":"refused"}

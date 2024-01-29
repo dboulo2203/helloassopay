@@ -22,29 +22,32 @@ class DoliWrapper
          
         global  $db;
         global $conf;
+        global $langs;
 
-        try {
+       //  try {
  
+        // Translations
+            $langs->loadLangs(array("admin", "helloassopay@helloassopay"));
+
             // ***  Get the invoice
             $invoice = new Facture($db);
             $result = $invoice->fetch($invoiceId);
 
             if (!$result) {
-                throw new Exception('Invoice not found or error getting invoice : ' . $invoiceId);
+                throw new Exception($langs->trans("ErrorInvoiceNotFound")  . " (".$invoiceId.")");
             }
             $invoice_id = $invoice->id;
 
-            if ($invoice->paye==="1")
-                throw new Exception("Cette facture est déjà payée. ");
+            if ($invoice->statut !=="1")
+                throw new Exception($langs->trans("ErrorInvoiceNotPayable")  . " (".$invoiceId.")");
 
+            // *** Define the remain to pay
             $totalpaid = $invoice->getSommePaiement();
             $totalcreditnotes = $invoice->getSumCreditNotesUsed();
             $totaldeposits = $invoice->getSumDepositsUsed();
             $invoice->remaintopay_calculated = price2num($invoice->total_ttc - $totalpaid - $totalcreditnotes - $totaldeposits, 'MT');
-            // echo "$invoice->remaintopay_calculated" . $invoice->remaintopay_calculated;
-           //  echo "remain to pay " .$remaintopay;
-           if (!(floatval($invoice->remaintopay_calculated) >0))
-                throw new Exception("Il ne reste rien à payer sur cette facture. Remain=". $invoice->remaintopay_calculated);
+            if (!(floatval($invoice->remaintopay_calculated) >0))
+                throw new Exception($langs->trans("ErrorNothingToPayInInvoice") . $invoice->remaintopay_calculated);
                 
 
             // *** Get the customer/thirdparty
@@ -52,16 +55,16 @@ class DoliWrapper
             $thirdparty = new Societe($db);
             $resultThirdparty = $thirdparty->fetch($thirdparty_id);           
             if (!$resultThirdparty) {
-                throw new Exception('l\'adhérent n\'a pas été trouvé :' . $thirdparty_id);
+                throw new Exception($langs->trans("ErrorThirdpartyNotFound")  . " (".$thirdparty_id.")" );
             }
   
             // *** Return data
             return array($invoice, $thirdparty);
 
-        } catch (Exception $e) {
+       //  } catch (Exception $e) {
  
-            throw new Exception(  $e->getMessage(). " : "  . $invoiceId);
-         }
+       //     throw new Exception(  $e->getMessage(). " : "  . $invoiceId, );
+       //   }
     }
 
     /**
@@ -74,89 +77,82 @@ class DoliWrapper
         global $conf;
 
         // echo(json_encode($data). "<br>");
-        try{
-            // *** Get the data
-    
+       //  try{
+            // *** Get the data 
             // *** Open the invoice
             include_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
             $facture = new Facture($db);
             $result = $facture->fetch($data->invoice_id);
 
             if (!$result) {
-                throw new Exception(' Invoice not found : ' . $data->invoice_id); 
+                throw new Exception($langs->trans("ErrorInvoiceNotFound") . " (" . $data->invoice_id. ")"); 
             }
             // log_in_file( );i
                         
             // ****
             $amount= (float) $data->paymentamount/100;
-            // if (((float) $data->paymentamount)/100 != (float) $facture->total_ttc){
-            //     $realAmount=((float) $data->paymentamount)/100;
-            //    throw new Exception ("Montants paiement (".$realAmount.") et montant facture (".(float) $facture->total_ttc.") différents. InvoiceID : " . $invoice_id . " - ",600);
-            // }
-                // Get the customer
+  
+            // *** Get the customer
             $thirdparty_id=$facture->socid;
 
             $thirdparty = new Societe($db);
             $resultThirdparty= $thirdparty->fetch($thirdparty_id);
             if (!$resultThirdparty){
-                throw new Exception('thirdparty not found', 600); 		
+                throw new Exception($langs->trans("ErrorThirdpartyNotFound") , 600); 		
             }
-            // log_in_file();
-                
-            // *** Create payment with API function
-    /*        include_once DOL_DOCUMENT_ROOT . '/compta/facture/class/api_invoices.class.php';
-            $invoicesAPI= nex Invoices();
-            $retourCreatePayment = $invoicesAPI->addPaymentDistributed(
-                [$data->invoice_id =>  ["amount"=> $amount ,  "multicurrency_amount"=> ""]], 
-                (new DateTime())->getTimestamp(),
-                $conf->global->HELLOASSO_PAYMENTMODE,
-                "yes",
-                $conf->global->HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS,
-                "",
-                "",
-                "",
-                $conf->global->HELLOASSO_PAYMENTMODE,
-                true
-            );
-           if ($retourCreatePayment == false) {
-                throw new Exception ("Erreur de création du paiement" );
-            }			
-    */
-
-            // *** Create payment with API call
-            $payment = [
+                 
+             // *** Create payment with API call
+  /*           $payment = [
                         "arrayofamounts" => [$data->invoice_id =>  ["amount"=> $amount ,  "multicurrency_amount"=> ""]]	,				
                         "datepaye" => (new DateTime())->getTimestamp(),
-                        // "paymentid"=> $conf->global->HELLOASSO_PAYMENTMODE,
                         "paymentid"=> $conf->global->HELLOASSO_PAYMENTMODE,
                         "closepaidinvoices"=> "yes",
                          "accountid"=> $conf->global->HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS,
-                        "num_paiement"=> "",
-                        "comment"=> "",
+                        "num_paiement"=>  $paymentdata->orderid,
+                        "comment"=> $data->paymentid,
                         "chqemetteur"=> "",
                         "fk_paiement"=> $conf->global->HELLOASSO_PAYMENTMODE,
                         "accepthigherpayment"=> true
                     ];
-            echo " payment : " . json_encode($payment). "<br>";
+           
             $apiKey= $conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE;
-            // "9d901cdc8e88a2dd69338a2e5300b09db6b46eeb";
             $protocol= isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http';
             $apiUrl= $protocol."://" . $_SERVER['HTTP_HOST']."/dolibarr/api/index.php/";
 
             $paymentId = $this->CallAPI("POST", $apiKey, $apiUrl . "invoices/paymentsdistributed", json_encode($payment));	
+ 
             if ($paymentId == false) {
                 throw new Exception ("Erreur de création du paiement" );
             }			
-            // log_in_file(" *** returned from HelloAsso server  : ". json_encode($returnVars) . " -	invoice Found : " . $data->invoice_id . ",	- customer Found : " . $thirdparty_id . ", " .$thirdparty->ref. " - Payment created  : " . $paymentId );
-                
-			
-	    } catch(Exception $exp) {
-		    throw new Exception($exp->getMessage(),$exp->getCode());
-        // log_in_file("*** Error : ".	$exp->getMessage() . " *** returned from Up2pay server  : ". json_encode($returnVars) . "\n");
+  */               
+        // *** // *** Create payment with API functions call 
+  		require_once DOL_DOCUMENT_ROOT.'/api/class/api.class.php';
+        require_once DOL_DOCUMENT_ROOT.'/api/class/api_access.class.php';
+		require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/api_invoices.class.php';
+	
+        $_GET['DOLAPIKEY']=$conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE;
+        $apiAccess = new DolibarrApiAccess($db);
+        $apiAccess->__isAllowed();
 
-	    }		
+        $apiInvoices = new Invoices($db);
+        $paymentID = $apiInvoices->addPaymentDistributed(
+             [$data->invoice_id =>  ["amount"=> $amount ,  "multicurrency_amount"=> ""]],
+            (new DateTime())->getTimestamp(),
+            $conf->global->HELLOASSO_PAYMENTMODE,
+            "yes",
+            $conf->global->HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS,
+            $paymentdata->orderid,
+            $data->paymentid,
+            "",
+            $conf->global->HELLOASSO_PAYMENTMODE,
+            "",
+            true
+        );			
     }
 
+    /**
+     * The curl calls to the Dolibarr API (not used)
+     */
 	public function CallAPI($method, $apikey, $url, $data = false, $jsonDataEncoding = true)
 	{
 		$curl = curl_init();

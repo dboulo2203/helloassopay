@@ -1,4 +1,4 @@
-# HELLOASSOPAY FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# HELLOASSOPAY FOR [DOLIBARR ERP CRM] - Version 1.0.2 -
 
 # Installation
 
@@ -17,6 +17,8 @@ HELLOASSO_HEADER_AFTER_PAYMENT : Header de la page backurl.php, à afficher avan
 HELLOASSO_URL_AFTER_PAYMENT : : After de la page backupurl.php, à afficher après le message de succès/refus du paiement
 HELLOASSO_URL_AFTER_PAYMENT_PAGE : url de la page à appeler en remplacement de la page backurl.php
 HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE : Api key de l'utilisateur qui crée le paiement (celui qui sera identifié comme utilisateur créateur du paiement)
+HELLOASSO_RETURN_MSG_ERROR : Message affiché en cas d'erreur rencontrée par HelloAsso lors du paiement.
+HELLOASSO_RETURN_MSG_SUCCESS : Message affiché en cas de succès du paiement par HelloAsso. HELLOASSO_RETURN_MSG_REFUSED : MEssage affiché en cas de refus du paiement par HelloAsso.
 
 # Documentation
 
@@ -56,6 +58,13 @@ Le lien de paiement mène à une page de paiement Helloasso dans laquelle, sont 
 ## A faire
 
 - Décider s'il convient d'intégrer dans la gestion standard des paiements de Dolibarr
+
+## v1.0.2
+
+FIX : Utilise les mécanismes de traduction pour les textes.
+NEW : Change méthode de création des paiements (utilise les fonctions API plutôt que les APIs)
+NEW : Création du paiement, sauve le numéro de paiement retourné par Dolibarr.
+NEW :  Textes de retour de paiement Hello Asso sont configurables.
 
 ## v1.0.1
 

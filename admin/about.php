@@ -63,11 +63,6 @@ if (!$user->admin) {
 	accessforbidden();
 }
 
-// Parameters
-$action = GETPOST('action', 'aZ09');
-$backtopage = GETPOST('backtopage', 'alpha');
-
-
 /*
  * Actions
  */
@@ -79,9 +74,7 @@ $backtopage = GETPOST('backtopage', 'alpha');
  * View
  */
 
-$form = new Form($db);
 
-$help_url = '';
 $page_name = "HelloAssoPayAbout";
 
 llxHeader('', $langs->trans($page_name), $help_url);
@@ -94,21 +87,19 @@ print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 // Configuration header
 $head = helloassopayAdminPrepareHead();
 print dol_get_fiche_head($head, 'about', $langs->trans($page_name), 0, 'helloassopay@helloassopay');
-
-dol_include_once('/helloassopay/core/modules/modHelloAssoPay.class.php');
-$tmpmodule = new modHelloAssoPay($db);
 // print $tmpmodule->getDescLong();
 
-	print "Ce module permet le paiement par carte bancaire, en utilisant Helloasso.</br>";
 
-print "<link href=\"../public/return_helloasso.log\">Fichier des retours de Hello Asso</link>";
+
+// print "<link href=\"../public/return_helloasso.log\">Fichier des retours de Hello Asso</link>";
+
+print "Ce module permet le paiement par carte bancaire, en utilisant Helloasso. </br>";
 
 $orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/README.md');
 $a = htmlentities($orig);
 
 echo '<code>';
 echo '<pre>';
-
 echo $a;
 
 echo '</pre>';

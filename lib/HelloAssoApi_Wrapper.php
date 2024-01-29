@@ -26,7 +26,7 @@ class HelloAssoApiWrapper
     public function initToken()
     {
         global $langs, $conf;
-        try {
+       //  try {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -69,12 +69,15 @@ class HelloAssoApiWrapper
             $this->refresh_token = $decodedResponse["refresh_token"];
 
             curl_close($curl);
-        } catch (Exception $e) {
-            throw new Exception($exp->getMessage(),$exp->getCode());
+       //  } catch (Exception $e) {
+       //     throw new Exception($exp->getMessage(),$exp->getCode());
 
-        }
+        //}
     }
 
+    /**
+     * Return the access token
+     */
     function get_access_token()
     {
         return $this->access_token;
@@ -103,7 +106,7 @@ class HelloAssoApiWrapper
 
         curl_setopt_array($curl, $params);
 
-        try {
+       //  try {
             $response = curl_exec($curl);
  
             if (empty($response))
@@ -128,9 +131,9 @@ class HelloAssoApiWrapper
             // *** Close
             curl_close($curl);
 
-        } catch (Exception $exp) {
-            throw new Exception($exp->getMessage(),$exp->getCode());
-        }
+        // } catch (Exception $exp) {
+        //     throw new Exception($exp->getMessage(),$exp->getCode());
+        // }
 
         return $response;
     }
@@ -174,7 +177,7 @@ class HelloAssoApiWrapper
             CURLOPT_POSTFIELDS => '{
                "totalAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
                 "initialAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
-                "itemName": "Adhesion Football",
+                "itemName": "'. $conf->global->HELLOASSO_LIBELLE_DESIGNATION. '",
                 "backUrl" : "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '" ,
                 "errorUrl" :  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '",
                 "returnUrl":  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=returnurl&ref=' . $invoice->id . '",
@@ -215,7 +218,7 @@ class HelloAssoApiWrapper
             CURLOPT_POSTFIELDS => '{
                "totalAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
                 "initialAmount": "' . number_format(floatval($invoice->remaintopay_calculated) * 100, 0, ".", '') . '",
-                "itemName": "Paiment de la facture Dhagpo ",
+                "itemName": "Paiement de la facture Dhagpo ",
                 "backUrl" : "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '" ,
                 "errorUrl" :  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=errorurl&ref=' . $invoice->id . '",
                 "returnUrl":  "' . DOL_MAIN_URL_ROOT . '/custom/helloassopay/public/backurl.php?action=returnurl&ref=' . $invoice->id . '",
@@ -233,7 +236,7 @@ class HelloAssoApiWrapper
             }'
         ));
 
-        try {
+      //  try {
             $response = curl_exec($curl);
 
             // *** Trace mode
@@ -265,9 +268,9 @@ class HelloAssoApiWrapper
             $id = $decodedResponse["14061"];
 
             curl_close($curl);
-        } catch (Exception $exp) {
-            throw new Exception($exp->getMessage(),$exp->getCode());
-        }
+       //  } catch (Exception $exp) {
+       //      throw new Exception($exp->getMessage(),$exp->getCode());
+       // }
         return $decodedResponse;
     }
 }

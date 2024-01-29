@@ -126,26 +126,30 @@ $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
 $item = $formSetup->newItem('HELLOASSO_URL_AFTER_PAYMENT');
-$item->defaultFieldValue = 'default value';
+ $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
-$item = $formSetup->newItem('HELLOASSO_HEADER_AFTER_PAYMENT');
-$item->defaultFieldValue = 'default value';
+// $item = $formSetup->newItem('HELLOASSO_HEADER_AFTER_PAYMENT');
+// $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
 $item = $formSetup->newItem('HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE');
 $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
-$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_ERROR');
-$item->defaultFieldValue = 'default value';
+// $item = $formSetup->newItem('HELLOASSO_RETURN_MSG_ERROR');
+// $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
-$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_SUCCESS');
-$item->defaultFieldValue = 'default value';
+// $item = $formSetup->newItem('HELLOASSO_RETURN_MSG_SUCCESS');
+// $item->defaultFieldValue = 'default value';
 
 // Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
-$item = $formSetup->newItem('HELLOASSO_RETURN_MSG_REFUSED');
+// $item = $formSetup->newItem('HELLOASSO_RETURN_MSG_REFUSED');
+// $item->defaultFieldValue = 'default value';
+
+// Setup conf HELLOASSOPAY_MYPARAM1 as a simple string input
+$item = $formSetup->newItem('HELLOASSO_LIBELLE_DESIGNATION');
 $item->defaultFieldValue = 'default value';
 
 $setupnotempty += count($formSetup->items);

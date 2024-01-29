@@ -77,20 +77,27 @@
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS");
 		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE");
-
 		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_ERROR");
 		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_SUCCESS");
 		if (empty($conf->global->HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_RETURN_MSG_REFUSED");
-
+		if (empty($conf->global->HELLOASSO_LIBELLE_DESIGNATION))
+			throw new Exception("Erreur de Configuration du module :  HELLOASSO_LIBELLE_DESIGNATION");
 
 			
+	    global $langs;
+
+       //  try {
+ 
+        // Translations
+		$langs->loadLangs(array("admin", "helloassopay@helloassopay"));
+
 		// *** Get the invoice id
 		$tag = $_GET["ref"];
 		if (empty($tag))
-			throw new Exception("L'id de la facture est obligatoire (GET[ref]) ",600);
+			throw new Exception($langs->trans("ErrorIdInvoiceMandatory") ,600);
 
 		$tracemode = $_GET["tracemode"];
 	
@@ -131,11 +138,11 @@
 		// *** Display message  
 		print "<link rel='stylesheet' href='./main.css' type='text/css'>";
 		print("<div class='helloassopage'>");
-		if (!empty($conf->global->HELLOASSO_HEADER_AFTER_PAYMENT))
-			print '<div class=\'helloassoheader\'>'. $conf->global->HELLOASSO_HEADER_AFTER_PAYMENT.'</div>';
+		if (!empty( $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT")))
+			print '<div class=\'helloassoheader\'>'. $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT").'</div>';
 		
 		print '<div class=\'helloassomessage\'>'  . $e->getMessage() ;
-		print "<p> Ce message apparait car le site a rencontré un problème. Veuillez contacter l'administrateur</p>";
+		print "<p> " . $langs->trans("ErrorGlobalMsg") . "</p>";
 		if (!empty($conf->global->HELLOASSO_URL_AFTER_PAYMENT))
 			print  '<div class=\'helloassobutton\'><a href="' .$conf->global->HELLOASSO_URL_AFTER_PAYMENT. '"><button class=\'hellobutton\'>Cliquez ici pour revenir sur le site de réservations</button></a></div>';
 		print "</div>";
