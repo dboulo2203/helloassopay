@@ -69,10 +69,10 @@
 		// *** Display message  
 	print "<link rel='stylesheet' href='./main.css' type='text/css'>";
 	print("<div class='helloassopage'>");
-	if (!$langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT"))
-		print '<div class=\'helloassoheader\'>'. $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT").'</div>';
+		if (!empty( $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT")))
+			print '<div class=\'helloassoheader\'>'. $langs->trans("HELLOASSO_HEADER_AFTER_PAYMENT").'</div>';
 	
 	print '<div class=\'helloassomessage\'>'  . $message;
 	if (!empty($conf->global->HELLOASSO_URL_AFTER_PAYMENT))
-		print  '<div class=\'helloassobutton\'><a href="' .$conf->global->HELLOASSO_URL_AFTER_PAYMENT. '"><button class=\'hellobutton\'>Cliquez ici pour revenir sur le site de réservation</button></a></div>';
+		print  '<div class=\'helloassobutton\'><a href="' .$conf->global->HELLOASSO_URL_AFTER_PAYMENT. '"><button class=\'hellobutton\'>'.$langs->trans("HELLOASSO_BACK_MESSAGE_AFTER_PAYMENT").'</button></a></div>';
 	print "</div>";

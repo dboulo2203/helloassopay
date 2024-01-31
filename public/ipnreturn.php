@@ -65,10 +65,10 @@
 		$data = json_decode($returnVars);
 
 		// *** Log response 
-		$ipn_log_file = 'ipn_helloasso.log';
-		$fp = fopen($ipn_log_file, 'a');
-		fwrite($fp, " *** Returned from server " . date("d-m-y h:i:s") . " : " . json_encode($data) . " : " . print_r($returnVars) . "\n");
-		fclose($fp);
+		// $ipn_log_file = 'ipn_helloasso.log';
+		// $fp = fopen($ipn_log_file, 'a');
+		// fwrite($fp, " *** Returned from server " . date("d-m-y h:i:s") . " : " . json_encode($data) . " : " . print_r($returnVars) . "\n");
+		// fclose($fp);
 
 		// *** Decode data
 		$paymentdata = new stdclass();
@@ -96,7 +96,7 @@
 			$f = fopen('ipn_helloasso.log', 'a+');
             fwrite($f," ***  ipnreturn :  " . date("d-m-y h:i:s") .  json_encode($paymentdata) . "\n");
             fclose($f);
-
+			// *** 
 			$data = $doliWrapper->createInvoicePayment($paymentdata);
 		}
 

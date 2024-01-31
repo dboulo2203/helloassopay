@@ -23,7 +23,6 @@
 		define('NOBROWSERNOTIF', '1');
 	}
 
-
 	// *** Load Dolibarr environment
 	$res = 0;
 	// Try main.inc.php into web root known defined into CONTEXT_DOCUMENT_ROOT (not always defined)
@@ -86,12 +85,10 @@
 		if (empty($conf->global->HELLOASSO_LIBELLE_DESIGNATION))
 			throw new Exception("Erreur de Configuration du module :  HELLOASSO_LIBELLE_DESIGNATION");
 
-			
-	    global $langs;
-
        //  try {
  
         // Translations
+		global $langs;
 		$langs->loadLangs(array("admin", "helloassopay@helloassopay"));
 
 		// *** Get the invoice id
@@ -101,7 +98,6 @@
 
 		$tracemode = $_GET["tracemode"];
 	
-			// echo " Invoice ID : " . $tag . "<br>";
 		require '../lib/HelloAssoApi_Wrapper.php';
 		require '../lib/DoliWrapper.php';
 
@@ -119,7 +115,6 @@
 		if (!empty($tracemode)) {
 			$f = fopen('return_helloasso.log', 'a+');
             fwrite($f,"  *** Trace mode 1 " . date("d-m-y h:i:s") ." - access token : " . json_encode($helloassoApiWrapper->access_token) . "\n");
-            // fwrite($f," *** Trace mode :  3 : " . date("d-m-y h:i:s") .  json_encode($redirecturl) . "\n");
             fclose($f);
 		 }
 
@@ -144,7 +139,7 @@
 		print '<div class=\'helloassomessage\'>'  . $e->getMessage() ;
 		print "<p> " . $langs->trans("ErrorGlobalMsg") . "</p>";
 		if (!empty($conf->global->HELLOASSO_URL_AFTER_PAYMENT))
-			print  '<div class=\'helloassobutton\'><a href="' .$conf->global->HELLOASSO_URL_AFTER_PAYMENT. '"><button class=\'hellobutton\'>Cliquez ici pour revenir sur le site de réservations</button></a></div>';
+			print  '<div class=\'helloassobutton\'><a href="' .$conf->global->HELLOASSO_URL_AFTER_PAYMENT. '"><button class=\'hellobutton\'>'.$langs->trans("HELLOASSO_BACK_MESSAGE_AFTER_PAYMENT").'</button></a></div>';
 		print "</div>";
 		
 			// *** Log the error

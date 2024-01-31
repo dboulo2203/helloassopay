@@ -55,3 +55,4 @@
  *** Trace Error 26-01-24 08:57:55 - Facture non trouv&eacute;e dans la base de donn&eacute;es (14790)
  *** backurl returned from server 26-01-24 08:58:17 : {"action":"returnurl","ref":"146","code":"refused"}
  *** backurl returned from server 26-01-24 08:58:52 : {"action":"errorurl","ref":"146","code":"refused"}
+ *** Trace Error 30-01-24 10:40:44 - Cette facture ne peut &ecirc;tre r&eacute;gl&eacute;e par HelloAsso (105)

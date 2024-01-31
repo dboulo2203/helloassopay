@@ -1,0 +1,76 @@
+{
+    "data": {
+        "payer": {
+            "email": "d.boulorebbb@orange.fr",
+            "country": "FRA",
+            "dateOfBirth": "2024-01-25T00:00:00+01:00",
+            "firstName": "Boulor\u00e9",
+            "lastName": "Dominique"
+        },
+        "items": [
+            {
+                "payments": [
+                    {
+                        "id": 8233,
+                        "shareAmount": 600
+                    }
+                ],
+                "name": "Paiement de la facture Dhagpo ",
+                "priceCategory": "Fixed",
+                "qrCode": "MTE5MzU6NjM4NDE3ODU5NjMzNDc1NjQw",
+                "id": 11935,
+                "amount": 600,
+                "type": "Payment",
+                "state": "Processed"
+            }
+        ],
+        "payments": [
+            {
+                "items": [
+                    {
+                        "id": 11935,
+                        "shareAmount": 600,
+                        "shareItemAmount": 600
+                    }
+                ],
+                "cashOutState": "MoneyIn",
+                "paymentReceiptUrl": "https:\/\/www.helloasso-sandbox.com\/associations\/dhagpo-test\/checkout\/paiement-attestation\/11935",
+                "id": 8233,
+                "amount": 600,
+                "date": "2024-01-25T13:26:23.8496094+01:00",
+                "paymentMeans": "Card",
+                "installmentNumber": 1,
+                "state": "Authorized",
+                "meta": {
+                    "createdAt": "2024-01-25T13:26:03.347564+01:00",
+                    "updatedAt": "2024-01-25T13:26:23.9033333+01:00"
+                },
+                "refundOperations": []
+            }
+        ],
+        "amount": {
+            "total": 600,
+            "vat": 0,
+            "discount": 0
+        },
+        "id": 11935,
+        "date": "2024-01-25T13:26:23.8496094+01:00",
+        "formSlug": "default",
+        "formType": "Checkout",
+        "organizationName": "Dhagpo-test",
+        "organizationSlug": "dhagpo-test",
+        "checkoutIntentId": 15203,
+        "meta": {
+            "createdAt": "2024-01-25T13:26:03.347564+01:00",
+            "updatedAt": "2024-01-25T13:26:24.0214994+01:00"
+        },
+        "isAnonymous": false,
+        "isAmountHidden": false
+    },
+    "eventType": "Order",
+    "metadata": {
+        "id": "152",
+        "socid": "37",
+        "userId": 98765
+    }
+}
