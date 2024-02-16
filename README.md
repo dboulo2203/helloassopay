@@ -55,6 +55,8 @@ Le lien de paiement mène à une page de paiement Helloasso dans laquelle, sont 
 
 # Release notes
 
+-- version en cours : version 1.0.0
+
 ## A faire
 
 - Décider s'il convient d'intégrer dans la gestion standard des paiements de Dolibarr
