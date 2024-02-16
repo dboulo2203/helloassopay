@@ -7,18 +7,19 @@
 
 ## configuration du module
 
-HELLOASSOPAY_BASEURL : fourni par HelloAsso</br>";
-HELLOASSOPAY_CLIENT_ID : fourni par HelloAsso</br>";
-HELLOASSOPAY_CLIENT_SECRET : fourni par HelloAsso</br>";
-HELLOASSOPAY_ORGANISM_SLUR : fourni par HelloAsso</br>";
-HELLOASSO_PAYMENTMODE : Id dolibarr du mode de paiement par CB</br>";
-HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS : Id dolibarr du compte bancaire sur lequel les paiements doivent être enregistrés</br>";
-HELLOASSO_HEADER_AFTER_PAYMENT : Header de la page backurl.php, à afficher avant le message de succès/refus du paiement
-HELLOASSO_URL_AFTER_PAYMENT : : After de la page backupurl.php, à afficher après le message de succès/refus du paiement
-HELLOASSO_URL_AFTER_PAYMENT_PAGE : url de la page à appeler en remplacement de la page backurl.php
-HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE : Api key de l'utilisateur qui crée le paiement (celui qui sera identifié comme utilisateur créateur du paiement)
-HELLOASSO_RETURN_MSG_ERROR : Message affiché en cas d'erreur rencontrée par HelloAsso lors du paiement.
-HELLOASSO_RETURN_MSG_SUCCESS : Message affiché en cas de succès du paiement par HelloAsso. HELLOASSO_RETURN_MSG_REFUSED : MEssage affiché en cas de refus du paiement par HelloAsso.
+- HELLOASSOPAY_BASEURL : fourni par HelloAsso</br>";
+- HELLOASSOPAY_CLIENT_ID : fourni par HelloAsso</br>";
+- HELLOASSOPAY_CLIENT_SECRET : fourni par HelloAsso</br>";
+- HELLOASSOPAY_ORGANISM_SLUR : fourni par HelloAsso</br>";
+- HELLOASSO_PAYMENTMODE : Id dolibarr du mode de paiement par CB</br>";
+- HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS : Id dolibarr du compte bancaire sur lequel les paiements doivent être enregistrés</br>";
+- HELLOASSO_HEADER_AFTER_PAYMENT : Header de la page backurl.php, à afficher avant le message de succès/refus du paiement
+- HELLOASSO_URL_AFTER_PAYMENT : : After de la page backupurl.php, à afficher après le message de succès/refus du paiement
+- HELLOASSO_URL_AFTER_PAYMENT_PAGE : url de la page à appeler en remplacement de la page backurl.php
+- HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE : Api key de l'utilisateur qui crée le paiement (celui qui sera identifié comme utilisateur créateur du paiement)
+- HELLOASSO_RETURN_MSG_ERROR : Message affiché en cas d'erreur rencontrée par HelloAsso lors du paiement.
+- HELLOASSO_RETURN_MSG_SUCCESS : Message affiché en cas de succès du paiement par HelloAsso
+- HELLOASSO_RETURN_MSG_REFUSED : MEssage affiché en cas de refus du paiement par HelloAsso.
 
 # Documentation
 
@@ -46,8 +47,8 @@ Le lien de paiement mène à une page de paiement Helloasso dans laquelle, sont 
 
 - ipn_return.log : contient toutes les réponses IPN de helloqsso pour tous les paiements.
 - return_helloasso.log : contient
-  - 1) les erreurs rencontrées lors du fonctionnement du module
-  - 2)les traces demandées dans la page start.php (tracemode=true). Les traces contiennent : le token retourné par HElloasso, la chaine de checkout envoyéee à Helloasso, l'url de paiement retournée par helloasso.
+  1) les erreurs rencontrées lors du fonctionnement du module
+  2) les traces demandées dans la page start.php (tracemode=true). Les traces contiennent : le token retourné par HElloasso, la chaine de checkout envoyéee à Helloasso, l'url de paiement retournée par helloasso.
 
 ## Note
 
