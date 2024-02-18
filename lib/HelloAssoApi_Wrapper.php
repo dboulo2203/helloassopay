@@ -162,7 +162,7 @@ class HelloAssoApiWrapper
        if (!empty($tracemode)) {
         $apiString = json_encode(array(
             // CURLOPT_URL => 'https://api.helloasso-sandbox.com/v5/organizations/Dhagpo-test/checkout-intents',
-            CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo-test/checkout-intents',           
+            CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/checkout-intents',           
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -273,7 +273,119 @@ class HelloAssoApiWrapper
        // }
         return $decodedResponse;
     }
+
+    /**
+     * Get organization details
+     */
+    public function getPayments($pageIndex=1)
+    {
+         global $langs, $conf;
+        $curl = curl_init();
+        
+        $params = array(
+            CURLOPT_URL =>  $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/payments?pageSize=20&pageIndex='. $pageIndex,            // ."&redirect_uri=". CALLBACK_URL,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                "Authorization:  Bearer " . $this->access_token
+            ),
+            // CURLOPT_STDERR => $f,
+        );
+
+        curl_setopt_array($curl, $params);
+       //  try {
+            
+            $response = curl_exec($curl);
+            // print($response);
+            
+            if (empty($response))
+                throw new Exception("API Error : get payments empty response" , 600);
+            
+            // *** Check curl  error
+            $err = curl_error($curl);
+            if ($err)
+                throw new Exception("API Error : " . $err, 600);
+ 
+            // *** Get Data from the APii response
+            $decodedResponse = json_decode($response, true);
+
+            // *** Check server error
+            if (array_key_exists("error", $decodedResponse))
+                throw new Exception("API Error : " . $decodedResponse->error . $decodedResponse->error_description, 600);
+
+            // *** prepare data     
+            $this->name = $decodedResponse["name"];
+            $this->organizationSlug = $decodedResponse["organizationSlug"];
+
+            // *** Close
+            curl_close($curl);
+
+        return $decodedResponse;
+    }
+
+
+      /**
+     * Get organization details
+     */
+    public function getPaymentsPageNumber()
+    {
+         global $langs, $conf;
+        $curl = curl_init();
+        
+        $params = array(
+            CURLOPT_URL =>  $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/payments?pageSize=20',            // ."&redirect_uri=". CALLBACK_URL,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                "Authorization:  Bearer " . $this->access_token
+            ),
+            // CURLOPT_STDERR => $f,
+        );
+
+        curl_setopt_array($curl, $params);
+       //  try {
+            
+            $response = curl_exec($curl);
+            // print($response);
+            
+            if (empty($response))
+                throw new Exception("API Error : get payments empty response" , 600);
+            
+            // *** Check curl  error
+            $err = curl_error($curl);
+            if ($err)
+                throw new Exception("API Error : " . $err, 600);
+ 
+            // *** Get Data from the APii response
+            $decodedResponse = json_decode($response, true);
+
+            $pagenumber= $decodedResponse["pagination"]["totalPages"];
+
+            // *** Check server error
+            if (array_key_exists("error", $decodedResponse))
+                throw new Exception("API Error : " . $decodedResponse->error . $decodedResponse->error_description, 600);
+
+            // *** prepare data     
+           //  $this->name = $decodedResponse["name"];
+           //  $this->organizationSlug = $decodedResponse["organizationSlug"];
+
+            // *** Close
+            curl_close($curl);
+
+        return $pagenumber;
+    }
 }
+
 
 /********************************************************************************************************************* */
 /*      

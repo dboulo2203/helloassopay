@@ -1,0 +1,47 @@
+{
+    "order": {
+        "id": 12997,
+        "date": "2024-02-17T15:31:41.9971497+01:00",
+        "formSlug": "default",
+        "formType": "Checkout",
+        "organizationName": "Dhagpo-test",
+        "organizationSlug": "dhagpo-test",
+        "formName": "Checkout",
+        "Ignored : meta": {
+            "createdAt": "0001-01-01T00:00:00+00:00",
+            "updatedAt": "0001-01-01T00:00:00+00:00"
+        },
+        "isAnonymous": false,
+        "isAmountHidden": false
+    },
+    "payer": {
+        "email": "message.agnes@gmail.com",
+        "country": "FRA",
+        "dateOfBirth": "2024-02-17T00:00:00+01:00",
+        "firstName": "Agnès",
+        "lastName": "Message"
+    },
+    "ignored : items": [
+        {
+            "shareAmount": 12600,
+            "shareItemAmount": 12600,
+            "id": 12997,
+            "amount": 12600,
+            "type": "Payment",
+            "state": "Processed"
+        }
+    ],
+    "cashOutState": "MoneyIn",
+    "paymentReceiptUrl": "https://www.helloasso-sandbox.com/associations/dhagpo-test/checkout/paiement-attestation/12997",
+    "id": 8981,
+    "amount": 12600,
+    "date": "2024-02-17T15:31:41.9971497+01:00",
+    "paymentMeans": "Card",
+    "installmentNumber": 1,
+    "state": "Authorized",
+    "meta": {
+        "createdAt": "2024-02-17T15:30:19.5476482+01:00",
+        "updatedAt": "2024-02-17T15:31:42.0766667+01:00"
+    },
+    "ignored refundOperations": []
+}

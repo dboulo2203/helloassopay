@@ -1,24 +1,25 @@
-# HELLOASSOPAY FOR [DOLIBARR ERP CRM] - Version 1.0.2 -
+# HELLOASSOPAY FOR [DOLIBARR ERP CRM] - Version 1.1.0 -
 
 # Installation
 
 - Copier le contenu du répertoire dans le répertoire Dolibarr suivant : DolibarrRoot/custom/helloassopay
 - activer et Configurer le module dans la gestion de la configuration de Dolibarr
 
-## configuration du module
+## configuration des paramètres du module
 
-HELLOASSOPAY_BASEURL : fourni par HelloAsso</br>";
-HELLOASSOPAY_CLIENT_ID : fourni par HelloAsso</br>";
-HELLOASSOPAY_CLIENT_SECRET : fourni par HelloAsso</br>";
-HELLOASSOPAY_ORGANISM_SLUR : fourni par HelloAsso</br>";
-HELLOASSO_PAYMENTMODE : Id dolibarr du mode de paiement par CB</br>";
-HELLOASSO_BANK_ACCOUNT_FOR_PAYMENTS : Id dolibarr du compte bancaire sur lequel les paiements doivent être enregistrés</br>";
-HELLOASSO_HEADER_AFTER_PAYMENT : Header de la page backurl.php, à afficher avant le message de succès/refus du paiement
-HELLOASSO_URL_AFTER_PAYMENT : : After de la page backupurl.php, à afficher après le message de succès/refus du paiement
-HELLOASSO_URL_AFTER_PAYMENT_PAGE : url de la page à appeler en remplacement de la page backurl.php
-HELLOASSO_DOLIKEY_FOR_PAYMENTCREATE : Api key de l'utilisateur qui crée le paiement (celui qui sera identifié comme utilisateur créateur du paiement)
-HELLOASSO_RETURN_MSG_ERROR : Message affiché en cas d'erreur rencontrée par HelloAsso lors du paiement.
-HELLOASSO_RETURN_MSG_SUCCESS : Message affiché en cas de succès du paiement par HelloAsso. HELLOASSO_RETURN_MSG_REFUSED : MEssage affiché en cas de refus du paiement par HelloAsso.
+- Url d'accès à HelloAsso : fourni par HelloAsso</br>;
+- Code client configuré dans la page API de l'admin HelloAsso : fourni par HelloAsso</br>;
+- Code secret configuré dans la page API de l'admin HelloAsso : fourni par HelloAsso</br>;
+- Nom générique de l'association dans l'admin HelloAsso : fourni par HelloAsso</br>;
+- Id (rowid) du mode de paiement Dolibarr de type Carte HelloAsso</br>;
+- Id de la banque Dolibarr à utiliser pour l'enregistrement du paiement </br>;
+- Url de la page affichée après paiement : After de la page backupurl.php, à afficher après le message de succès/refus du paiement
+- Code API Dolibarr de l'utilisateur qui sera identifié comme créateur du paiement
+- Désignation présente dans le fichier des paiements HelloAsso
+
+## configuration des messages
+
+Cela se fait dans le fichier lang du module : helloassopay\langs\fr_FR
 
 # Documentation
 
@@ -46,8 +47,8 @@ Le lien de paiement mène à une page de paiement Helloasso dans laquelle, sont 
 
 - ipn_return.log : contient toutes les réponses IPN de helloqsso pour tous les paiements.
 - return_helloasso.log : contient
-  - 1) les erreurs rencontrées lors du fonctionnement du module
-  - 2)les traces demandées dans la page start.php (tracemode=true). Les traces contiennent : le token retourné par HElloasso, la chaine de checkout envoyéee à Helloasso, l'url de paiement retournée par helloasso.
+  1) les erreurs rencontrées lors du fonctionnement du module
+  2) les traces demandées dans la page start.php (tracemode=true). Les traces contiennent : le token retourné par HElloasso, la chaine de checkout envoyéee à Helloasso, l'url de paiement retournée par helloasso.
 
 ## Note
 
@@ -55,11 +56,9 @@ Le lien de paiement mène à une page de paiement Helloasso dans laquelle, sont 
 
 # Release notes
 
--- version en cours : version 1.0.0
+## v1.1.0
 
-## A faire
-
-- Décider s'il convient d'intégrer dans la gestion standard des paiements de Dolibarr
+- NEW : ajout de la récupération des payments dans Hello Asso et création d'une table dans la base de données
 
 ## v1.0.2
 
