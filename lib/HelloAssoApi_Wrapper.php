@@ -67,6 +67,7 @@ class HelloAssoApiWrapper
 
             $this->access_token = $decodedResponse["access_token"];
             $this->refresh_token = $decodedResponse["refresh_token"];
+        // throw new Exception( $this->access_token,600);
 
             curl_close($curl);
        //  } catch (Exception $e) {
@@ -150,6 +151,7 @@ class HelloAssoApiWrapper
 
         $curl = curl_init();
  
+       
         // *** Split the Dolibarr name into firstname and lastname
         $lastnamepart = substr($thirdparty->name, 0, strpos($thirdparty->name , " "));
         $namepart2 = substr($thirdparty->name,strpos($thirdparty->name , " ")+1,strlen($thirdparty->name) );        
@@ -161,8 +163,10 @@ class HelloAssoApiWrapper
         // *** If required trace the string that will be sent to the helloasso api
        if (!empty($tracemode)) {
         $apiString = json_encode(array(
-            // CURLOPT_URL => 'https://api.helloasso-sandbox.com/v5/organizations/Dhagpo-test/checkout-intents',
+             // CURLOPT_URL => 'https://api.helloasso-sandbox.com/v5/organizations/dhagpo-kundreul-ling-espace-de-tests/checkout-intents',
+            // CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo Kundreul Ling - espace de tests/checkout-intents',           
             CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/checkout-intents',           
+           // CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo Kundreul Ling - espace de tests/checkout-intents',           
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -203,7 +207,7 @@ class HelloAssoApiWrapper
 
         curl_setopt_array($curl, array(
             // CURLOPT_URL => 'https://api.helloasso-sandbox.com/v5/organizations/Dhagpo-test/checkout-intents',
-            CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo-test/checkout-intents',           
+           CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/checkout-intents',           
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

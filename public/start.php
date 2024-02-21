@@ -108,10 +108,11 @@
 		// *** Get the payment url from Helloasso
 		$helloassoApiWrapper = new HelloAssoApiWrapper();
 
+		// $test="Début";
 		$helloassoApiWrapper->initToken();
 		$helloassoApiWrapper->get_access_token();
-		// print($helloassoApiWrapper->access_token);
-	
+		//  print($helloassoApiWrapper->access_token);
+		//$test="Début : après token";
 		if (!empty($tracemode)) {
 			$f = fopen('return_helloasso.log', 'a+');
             fwrite($f,"  *** Trace mode 1 " . date("d-m-y h:i:s") ." - access token : " . json_encode($helloassoApiWrapper->access_token) . "\n");
@@ -119,6 +120,7 @@
 		 }
 
 		$redirecturl = $helloassoApiWrapper->initCart($data,$tracemode );
+		// $test="Début : après token et";
 		if (!empty($tracemode)) {
 			$f = fopen('return_helloasso.log', 'a+');
             fwrite($f," *** Trace mode 3 " . date("d-m-y h:i:s") ." : - redirect url : " . date("d-m-y h:i:s") .  json_encode($redirecturl) . "\n");
