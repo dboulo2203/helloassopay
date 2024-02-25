@@ -49,7 +49,9 @@
 	if (empty($action))
 		$message="Cette page doit être appelée avec le paramètre action";
 
-	if ($action === "backurl") {
+	if ($_GET["code"] === "refused") {
+		$message=  $langs->trans("HELLOASSO_RETURN_MSG_REFUSED") . " (ref:" . $_GET["ref"] . ")";
+	} else 	if ($action === "backurl") {
 		$message= "Retour sur notre site après à votre demande sur le site Helloasso : Facture (" . $_GET["ref"].")";
 	} else if ($action === "errorurl") {
 		$message= $langs->trans("HELLOASSO_RETURN_MSG_ERROR") . " (ref:" . $_GET["ref"] . ") - Cause : " .

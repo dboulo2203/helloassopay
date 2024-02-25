@@ -59,7 +59,6 @@
 
 	try {
 
-
 		// *** Get response and prepare data
 		$returnVars = file_get_contents('php://input');
 		$data = json_decode($returnVars);
@@ -72,32 +71,39 @@
 
 		// *** Decode data
 		$paymentdata = new stdclass();
-		$paymentdata->invoice_id= $data->metadata->id;
-		// $paymentdata->globalamount= $data->amount;
-		$paymentdata->globalstate= $data->data->state;
-		$paymentdata->socemail= $data->data->payer->email;
-		$paymentdata->socid = $data->metadata->socid;
 		$paymentdata->eventType = $data->eventType;
 
-		$item= $data->data->items[0];
-		$paymentdata->paymentstate= $item->state;
-		$paymentdata->orderid= $item->id;
-		
-		$paymentdata->paymentamount= $data->data->amount;		
-		$paymentdata->paymentid= $data->data->id;
-		
-		//*** Get data from helloasso response */
-		require '../lib/HelloAssoApi_Wrapper.php';
-		require '../lib/DoliWrapper.php';
-	
-		//*** Create the payment
-		$doliWrapper = new DoliWrapper();
 		if ($paymentdata->eventType=== "Payment") {
+			$paymentdata->invoice_id= $data->metadata->id;
+			// $paymentdata->globalamount= $data->amount;
+			$paymentdata->globalstate= $data->data->state;
+			$paymentdata->socemail= $data->data->payer->email;
+			$paymentdata->socid = $data->metadata->socid;
+			
+
+			$item= $data->data->items[0];
+			$paymentdata->paymentstate= $item->state;
+			$paymentdata->orderid= $item->id;
+			
+			$paymentdata->paymentamount= $data->data->amount;		
+			$paymentdata->paymentid= $data->data->id;
+			
+			//*** Get data from helloasso response */
+			require '../lib/HelloAssoApi_Wrapper.php';
+			require '../lib/DoliWrapper.php';
+	
+			//*** Create the payment
+			$doliWrapper = new DoliWrapper();
+		
 			$f = fopen('ipn_helloasso.log', 'a+');
             fwrite($f," ***  ipnreturn :  " . date("d-m-y h:i:s") .  json_encode($paymentdata) . "\n");
             fclose($f);
 			// *** 
-			$data = $doliWrapper->createInvoicePayment($paymentdata);
+
+			if ($paymentdata->globalstate=== "Authorized")
+				$data = $doliWrapper->createInvoicePayment($paymentdata);
+			else 
+				throw new Exception("Payment not Authorized", 600);		
 		}
 
        } catch (Exception $e) {

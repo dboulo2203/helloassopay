@@ -31,18 +31,13 @@ class HelloAssoApiWrapper
 
             curl_setopt_array($curl, array(
                 CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . "/oauth2/token",
-                // CURLOPT_URL => 'https://api.helloasso-sandbox.com/oauth2/token',
-                CURLOPT_RETURNTRANSFER => true,
+                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                // CURLOPT_POSTFIELDS => 'grant_type=client_credentials&client_id=' . $conf->global->HELLOASSOPAY_CLIENT_ID . '&client_secret=' . $conf->global->HELLOASSOPAY_CLIENT_SECRET,
-                // CURLOPT_POSTFIELDS => "'" . $access_string . "'", 
-                
-                // CURLOPT_POSTFIELDS => 'grant_type=client_credentials&client_id=06c69c161781420aa52aa2ac47297c4e&client_secret=3oWky6O8RdEUUx%2Fq%2BYJ%2BOraXBc6QdzpH',
                 CURLOPT_POSTFIELDS => 'grant_type=client_credentials&client_id='.urlencode($conf->global->HELLOASSOPAY_CLIENT_ID).'&client_secret='.urlencode($conf->global->HELLOASSOPAY_CLIENT_SECRET).'',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/x-www-form-urlencoded'
@@ -63,17 +58,13 @@ class HelloAssoApiWrapper
             $decodedResponse = json_decode($response, true);
 
             if (array_key_exists("error", $decodedResponse))
-                throw new Exception("API Error : " . $decodedResponse->error . $decodedResponse->error_description, 600);
+                throw new Exception("API Error : " . $decodedResponse["error"] . $decodedResponse["error_description"], 600);
+
 
             $this->access_token = $decodedResponse["access_token"];
             $this->refresh_token = $decodedResponse["refresh_token"];
-        // throw new Exception( $this->access_token,600);
 
             curl_close($curl);
-       //  } catch (Exception $e) {
-       //     throw new Exception($exp->getMessage(),$exp->getCode());
-
-        //}
     }
 
     /**
@@ -131,16 +122,13 @@ class HelloAssoApiWrapper
 
             // *** Close
             curl_close($curl);
-
-        // } catch (Exception $exp) {
-        //     throw new Exception($exp->getMessage(),$exp->getCode());
-        // }
-
         return $response;
     }
+
+
     /**
      * Call HelloAsso API to initialize checkout
-     * If ok this function return raw response
+     * If ok this function returns the helloasso payment url 
      * Else an error code
      */
     public function initCart($data,$tracemode)
@@ -163,10 +151,7 @@ class HelloAssoApiWrapper
         // *** If required trace the string that will be sent to the helloasso api
        if (!empty($tracemode)) {
         $apiString = json_encode(array(
-             // CURLOPT_URL => 'https://api.helloasso-sandbox.com/v5/organizations/dhagpo-kundreul-ling-espace-de-tests/checkout-intents',
-            // CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo Kundreul Ling - espace de tests/checkout-intents',           
-            CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/checkout-intents',           
-           // CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/Dhagpo Kundreul Ling - espace de tests/checkout-intents',           
+             CURLOPT_URL => $conf->global->HELLOASSOPAY_BASEURL . '/v5/organizations/'.$conf->global->HELLOASSOPAY_ORGANISM_SLUR.'/checkout-intents',           
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -272,14 +257,12 @@ class HelloAssoApiWrapper
             $id = $decodedResponse["14061"];
 
             curl_close($curl);
-       //  } catch (Exception $exp) {
-       //      throw new Exception($exp->getMessage(),$exp->getCode());
-       // }
-        return $decodedResponse;
+
+            return $decodedResponse;
     }
 
     /**
-     * Get organization details
+     * Get organization payments
      */
     public function getPayments($pageIndex=1)
     {
