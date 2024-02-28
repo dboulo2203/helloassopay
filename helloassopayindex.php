@@ -245,26 +245,22 @@ if (isModEnabled('helloassopay') && $user->rights->helloassopay->read)
 */
 
 print '</div></div>';
+Print ' *** Dans Le log de retour est conservé chaque retour de HelloAsso vers Dolibarr : incluant les paiements réussis et les paiements en echec ainsi que les erreurs</br>';
+Print 'exemple de  : retour de HelloAsso : *** backurl returned from server 26-01-24 08:58:17 : {"action":"returnurl","ref":"146","code":"refused"}</br>ref : l\'id de la facture, code : statut du paiement (succeeded, refused etc) </br>';
+print '</br>';
+Print ' *** Dans le fichier des IPN est conservé chaque paiement réussi. Ces données sont utilisées pour créer le paiement dans Dolibarr </br>';
 
-$orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/public/return_helloasso.log');
-$a = htmlentities($orig);
-echo '<code>';
-echo '<pre>';
-echo $a;
-echo '</pre>';
-echo '</code>';
-
-
-echo '*******************************************';
-
-$orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/public/ipn_helloasso.log');
-$a = htmlentities($orig);
-echo '<code>';
-echo '<pre>';
-echo $a;
-echo '</pre>';
-echo '</code>';
-
+ Print '  ***  ipnreturn : 25-01-24 07: 44: 37{ </br>'
+    . ' "invoice_id": "14762", : id Dolibarr de la facture</br>'
+    . '"globalstate": "Authorized", Etat du paiement</br>'
+    . '"socemail": "d.boulore1@orange.fr",</br>'
+    . '"socid": "17", Id Dolibarr du tiers</br>'
+    . '"eventType": "Payment",</br>'
+    . '"paymentstate": "Processed",</br>'
+    . '"orderid": 11772,</br>'
+    . '"paymentamount": 5000,</br>'
+    . '"paymentid": 8147 : id Helloasso du paiement (sauvegardé dans le paiement Dolibarr)</br>'
+. '}';
 
 // End of page
 llxFooter();

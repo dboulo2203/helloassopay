@@ -265,7 +265,7 @@ class modHelloAssoPay extends DolibarrModules
 		$r = 0;
 		// Add here entries to declare new permissions
 		/* BEGIN MODULEBUILDER PERMISSIONS */
-		/*$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
+		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
 		$this->rights[$r][1] = 'Read objects of HelloAssoPay'; // Permission label
 		$this->rights[$r][4] = 'myobject';
 		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->hasRight('helloassopay', 'myobject', 'read'))
@@ -280,7 +280,7 @@ class modHelloAssoPay extends DolibarrModules
 		$this->rights[$r][4] = 'myobject';
 
 		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->helloassopay->myobject->delete)
-		$r++;*/
+		$r++;
 
 
 
@@ -295,7 +295,7 @@ class modHelloAssoPay extends DolibarrModules
 		$this->menu[$r++] = array(
 			'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'top', // This is a Top menu entry
-			'titre'=>'ModuleHelloAssoPayName',
+			'titre'=>'HelloAssoPay',
 			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
 			'mainmenu'=>'helloassopay',
 			'leftmenu'=>'',
@@ -309,14 +309,31 @@ class modHelloAssoPay extends DolibarrModules
 		);
 		/* END MODULEBUILDER TOPMENU */
 		/* BEGIN MODULEBUILDER LEFTMENU MYOBJECT */
-		/*$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=helloassopay',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+		$this->menu[$r++]=array(
+			'fk_menu'=>'r=0',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'left',                          // This is a Left menu entry
-			'titre'=>'MyObject',
+			'titre'=>'Log. de retour',
 			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
 			'mainmenu'=>'helloassopay',
 			'leftmenu'=>'myobject',
-			'url'=>'/helloassopay/helloassopayindex.php',
+			'url'=>'/helloassopay/helloassopayshowlog1.php',
+			'langs'=>'helloassopay@helloassopay',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'position'=>1000+$r,
+			// 'enabled'=> true,
+			'enabled'=>'isModEnabled("helloassopay")', // Define condition to show or hide menu entry. Use 'isModEnabled("helloassopay")' if entry must be visible if module is enabled.
+			'perms'=>'$user->hasRight("helloassopay", "myobject", "read")',
+			'target'=>'',
+			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
+		);
+
+		$this->menu[$r++]=array(
+			'fk_menu'=>'r=0',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'type'=>'left',			                // This is a Left menu entry
+			'titre'=>'Log IPN',
+			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
+			'mainmenu'=>'helloassopay',
+			'leftmenu'=>'helloassopay_myobject_list',
+			'url'=>'/helloassopay/helloassopayshowlog2.php',
 			'langs'=>'helloassopay@helloassopay',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000+$r,
 			'enabled'=>'isModEnabled("helloassopay")', // Define condition to show or hide menu entry. Use 'isModEnabled("helloassopay")' if entry must be visible if module is enabled.
@@ -324,21 +341,7 @@ class modHelloAssoPay extends DolibarrModules
 			'target'=>'',
 			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
 		);
-		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=helloassopay,fk_leftmenu=myobject',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-			'type'=>'left',			                // This is a Left menu entry
-			'titre'=>'List_MyObject',
-			'mainmenu'=>'helloassopay',
-			'leftmenu'=>'helloassopay_myobject_list',
-			'url'=>'/helloassopay/myobject_list.php',
-			'langs'=>'helloassopay@helloassopay',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-			'position'=>1000+$r,
-			'enabled'=>'isModEnabled("helloassopay")', // Define condition to show or hide menu entry. Use 'isModEnabled("helloassopay")' if entry must be visible if module is enabled.
-			'perms'=>'$user->hasRight("helloassopay", "myobject", "read")'
-			'target'=>'',
-			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
-		);
-		$this->menu[$r++]=array(
+		/* $this->menu[$r++]=array(
 			'fk_menu'=>'fk_mainmenu=helloassopay,fk_leftmenu=myobject',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'left',			                // This is a Left menu entry
 			'titre'=>'New_MyObject',
