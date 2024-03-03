@@ -102,7 +102,7 @@ $max = getDolGlobalInt('MAIN_SIZE_SHORTLIST_LIMIT');
 print '</div></div>';
 
 $orig = file_get_contents(DOL_MAIN_URL_ROOT.'/custom//helloassopay/public/return_helloasso.log');
-$a = htmlentities($orig);
+$a = $orig;
 echo '<code>';
 echo '<pre>';
 echo $a;
